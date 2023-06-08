@@ -15,7 +15,10 @@ function NinjaPage({ isLoggedIn, setUser }) {
   }, []);
   async function logoutHandler() {
     try {
-      await BasicAxios.post("logout", { token: Cookies.get("access_token") });
+      await BasicAxios.post(
+        "logout?access_token=" + Cookies.get("access_token"),
+        { token: Cookies.get("access_token") }
+      );
       dispatch(authActions.setUser(null));
       dispatch(authActions.setIsLoggedIn(false));
       setUser(null);
