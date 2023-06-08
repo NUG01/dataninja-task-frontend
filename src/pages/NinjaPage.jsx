@@ -30,7 +30,10 @@ function NinjaPage({ isLoggedIn, setUser }) {
 
   async function verificationHandler(value) {
     try {
-      await BasicAxios.post("verify-user", { value });
+      await BasicAxios.post(
+        "verify-user?access_token=" + Cookies.get("access_token"),
+        { value }
+      );
       setShowVerifyButton(value ? true : false);
     } catch (error) {
       alert("Error");
